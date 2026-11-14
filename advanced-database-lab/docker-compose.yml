@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: adv_db_postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    networks:
+      - adv_db_net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mongodb:
+    image: mongo:6-jammy
+    container_name: adv_db_mongodb
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+    volumes:
+      - ./data/mongodb:/data/db
+      - ./mongodb/init:/docker-entrypoint-initdb.d
+    networks:
+      - adv_db_net
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+# Removed named volumes section since we are using bind mounts now.
+
+networks:
+  adv_db_net:
+    driver: bridge

@@ -1,0 +1,12 @@
+# Variáveis de ambiente
+.env
+
+# Logs e dependências do S.O.
+*.log
+.DS_Store
+
+# Material exclusivo do professor (Gabaritos, soluções, etc.)
+teacher/
+
+# Ignorar arquivos de banco de dados
+data/

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tutorBancoDados.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laboratório-de-banco-de-dados">Laboratório de Banco de Dados</h1>
+<p>Neste laboratório, simularemos e evoluiremos uma <strong>Hospital</strong> que sofre com problemas de concorrência, performance e modelagem à medida que cresce.</p>
+<hr>
+<h2 id="-como-iniciar">🚀 Como Iniciar</h2>
+<ol>
+<li><strong>Clone o repositório</strong> e abra o terminal na pasta raiz do projeto.</li>
+<li><strong>Copie o arquivo de configuração (.env):</strong>
+<ul>
+<li><em>Windows (PowerShell)</em>: <code>Copy-Item .env.example .env</code></li>
+<li><em>Linux/Mac</em>: <code>cp .env.example .env</code></li>
+</ul>
+</li>
+<li><strong>Suba o ambiente (PostgreSQL):</strong>
+<ul>
+<li><em>Windows (PowerShell)</em>: <code>.\scripts\start.ps1</code></li>
+<li><em>Linux/Mac (Bash)</em>: <code>./scripts\start.sh</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="-conectando-aos-bancos-de-dados">🔌 Conectando aos Bancos de Dados</h2>
+<p>Para realizar as consultas e laboratórios, recomendamos fortemente o uso do <strong>DBeaver</strong> ou do <strong>VSCode</strong>.</p>
+<h3 id="opção-a-dbeaver-recomendado">Opção A: DBeaver (Recomendado)</h3>
+<h4 id="postgresql">PostgreSQL</h4>
+<ul>
+<li>Abra o DBeaver, clique em <strong>Nova Conexão</strong> e selecione <strong>PostgreSQL</strong>.</li>
+<li><strong>Host</strong>: <code>localhost</code> | <strong>Port</strong>: <code>5432</code> | <strong>Database</strong>: <code>postgres</code></li>
+<li><strong>Username</strong>: <code>adv_user</code> | <strong>Password</strong>: <code>adv_password</code></li>
+<li>Teste a conexão e salve.</li>
+</ul>
+<h3 id="opção-b-visual-studio-code">Opção B: Visual Studio Code</h3>
+<h4 id="postgresql-via-extensão-sqltools">PostgreSQL (via extensão SQLTools)</h4>
+<ul>
+<li>Instale a extensão <strong>SQLTools</strong> + <strong>SQLTools PostgreSQL/Redshift Driver</strong>.</li>
+<li>Adicione uma conexão PostgreSQL com:
+<ul>
+<li><strong>Server Address</strong>: <code>localhost</code> | <strong>Port</strong>: <code>5432</code> | <strong>Database</strong>: <code>postgres</code></li>
+<li><strong>Username</strong>: <code>adv_user</code> | <strong>Password</strong>: <code>adv_password</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="️-executando-as-tarefas">🛠️ Executando as Tarefas</h2>
+<p>Quando conseguir conectar estando com o Docker rodando e o banco conectado na IDE, execute os comandos SQL abaixo exatamente na ordem fornecida.</p>
+<blockquote>
+<p><strong>Importante:</strong> Tente ao máximo seguir a ordem, pois se executar de outra forma dará erro de relacionamento de chaves estrangeiras.</p>
+</blockquote>
+<hr>
+<h3 id="1-criando-o-banco-de-dados">1. Criando o Banco de Dados</h3>
+<p>Rode este comando (estando conectado inicialmente ao banco genérico <code>postgres</code>):</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> DATABASE sghc;
+</div></code></pre>
+<p><strong>⚠️ AVISO:</strong> Após criar o banco, troque a sua conexão na IDE (DBeaver/VSCode) para o <strong>novo banco de dados criado (<code>sghc</code>)</strong> antes de continuar para os próximos passos.</p>
+<hr>
+<h3 id="2-resetando-as-tabelas-truncate">2. Resetando as Tabelas (Truncate)</h3>
+<p><em>(Faça isso apenas se já possuir as tabelas criadas e quiser limpar os dados para reiniciar o laboratório)</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">TRUNCATE</span> <span class="hljs-keyword">TABLE</span>
+    Prescricao,
+    Consulta_Procedimento,
+    Consulta,
+    Equipamento,
+    Medico_Especialidade,
+    Paciente_Convenio,
+    Medico,
+    Paciente_Alergia,
+    Paciente_Telefone,
+    Paciente,
+    Medicamento,
+    Sala,
+    Procedimento,
+    Convenio,
+    Especialidade
+RESTART <span class="hljs-keyword">IDENTITY</span> CASCADE;
+</div></code></pre>
+<hr>
+<h3 id="3-criação-de-tabelas-e-relacionamentos">3. Criação de Tabelas e Relacionamentos</h3>
+<p>Rode os comandos abaixo no banco <code>sghc</code> para construir a estrutura.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">-- 1. Domínios e Entidades Independentes</span>
+<span class="hljs-keyword">CREATE TABLE</span> Especialidade (
+    ID_Especialidade SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    Nome_Especialidade <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT NULL</span>,
+    Conselho <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>)
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Convenio (
+    ID_Convenio SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    CNPJ <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">14</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT NULL</span>,
+    Nome_Operadora <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT NULL</span>,
+    Tipo_Plano <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>)
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Procedimento (
+    ID_Procedimento SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    Codigo_TUSS <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">8</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT NULL</span>,
+    Nome_Procedimento <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT NULL</span>,
+    Valor_Base <span class="hljs-type">NUMERIC</span>(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Sala (
+    ID_Sala SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    Numero_Sala <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT NULL</span>
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Medicamento (
+    ID_Medicamento SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    Nome_Medicamento <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT NULL</span>
+);
+
+<span class="hljs-comment">-- 2. Entidades Pessoais (Paciente e Médico)</span>
+<span class="hljs-keyword">CREATE TABLE</span> Paciente (
+    ID_Paciente SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    CPF <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT NULL</span>,
+    Nome_Completo <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT NULL</span>,
+    Data_Nascimento <span class="hljs-type">DATE</span>
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Paciente_Telefone (
+    ID_Telefone SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Paciente <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    Numero <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT NULL</span>
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Paciente_Alergia (
+    ID_Alergia SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Paciente <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    Descricao <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT NULL</span>
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Medico (
+    ID_Medico SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    CRM <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT NULL</span>,
+    UF_CRM <span class="hljs-type">CHAR</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">NOT NULL</span>,
+    Nome_Medico <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT NULL</span>,
+    <span class="hljs-keyword">UNIQUE</span> (CRM, UF_CRM)
+);
+
+<span class="hljs-comment">-- 3. Relacionamentos e Entidades de Vínculo</span>
+<span class="hljs-keyword">CREATE TABLE</span> Paciente_Convenio (
+    ID_Paciente_Convenio SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Paciente <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Convenio <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    Numero_Carteirinha <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>),
+    Data_Validade <span class="hljs-type">DATE</span>
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Medico_Especialidade (
+    ID_Medico <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Especialidade <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    <span class="hljs-keyword">PRIMARY KEY</span> (ID_Medico, ID_Especialidade)
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Equipamento (
+    ID_Equipamento SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Sala <span class="hljs-type">INTEGER</span>,
+    Numero_Serie <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT NULL</span>,
+    Nome_Equipamento <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT NULL</span>,
+    Data_Manutencao <span class="hljs-type">DATE</span>
+);
+
+<span class="hljs-comment">-- 4. O Evento Central: A Consulta</span>
+<span class="hljs-keyword">CREATE TABLE</span> Consulta (
+    ID_Consulta SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Paciente <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Medico <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Especialidade <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Sala <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Paciente_Convenio <span class="hljs-type">INTEGER</span>,
+    Data_Hora_Inicio <span class="hljs-type">TIMESTAMP</span> <span class="hljs-keyword">NOT NULL</span>,
+    Duracao_Minutos <span class="hljs-type">INTEGER</span>,
+    Status <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>)
+);
+
+<span class="hljs-comment">-- 5. Pós-Consulta (Receitas e Atos Médicos)</span>
+<span class="hljs-keyword">CREATE TABLE</span> Consulta_Procedimento (
+    ID_Consulta_Procedimento SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Consulta <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Procedimento <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>
+);
+
+<span class="hljs-keyword">CREATE TABLE</span> Prescricao (
+    ID_Prescricao SERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    ID_Consulta <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    ID_Medicamento <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    Dosagem <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">255</span>),
+    Instrucoes_Uso TEXT
+);
+
+<span class="hljs-comment">-- CHAVES ESTRANGEIRAS (FOREIGN KEYS)</span>
+
+<span class="hljs-comment">-- 1. Paciente_Telefone</span>
+<span class="hljs-keyword">ALTER TABLE</span> Paciente_Telefone
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_paciente_telefone_paciente
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Paciente)
+    <span class="hljs-keyword">REFERENCES</span> Paciente(ID_Paciente)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-comment">-- 2. Paciente_Alergia</span>
+<span class="hljs-keyword">ALTER TABLE</span> Paciente_Alergia
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_paciente_alergia_paciente
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Paciente)
+    <span class="hljs-keyword">REFERENCES</span> Paciente(ID_Paciente)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-comment">-- 3. Paciente_Convenio</span>
+<span class="hljs-keyword">ALTER TABLE</span> Paciente_Convenio
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_paciente_convenio_paciente
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Paciente)
+    <span class="hljs-keyword">REFERENCES</span> Paciente(ID_Paciente)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-keyword">ALTER TABLE</span> Paciente_Convenio
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_paciente_convenio_convenio
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Convenio)
+    <span class="hljs-keyword">REFERENCES</span> Convenio(ID_Convenio)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-comment">-- 4. Medico_Especialidade</span>
+<span class="hljs-keyword">ALTER TABLE</span> Medico_Especialidade
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_medico_especialidade_medico
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Medico)
+    <span class="hljs-keyword">REFERENCES</span> Medico(ID_Medico)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-keyword">ALTER TABLE</span> Medico_Especialidade
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_medico_especialidade_especialidade
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Especialidade)
+    <span class="hljs-keyword">REFERENCES</span> Especialidade(ID_Especialidade)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-comment">-- 5. Equipamento</span>
+<span class="hljs-keyword">ALTER TABLE</span> Equipamento
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_equipamento_sala
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Sala)
+    <span class="hljs-keyword">REFERENCES</span> Sala(ID_Sala)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">SET</span> <span class="hljs-keyword">NULL</span>;
+
+<span class="hljs-comment">-- 6. Consulta</span>
+<span class="hljs-keyword">ALTER TABLE</span> Consulta
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_paciente
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Paciente)
+    <span class="hljs-keyword">REFERENCES</span> Paciente(ID_Paciente);
+
+<span class="hljs-keyword">ALTER TABLE</span> Consulta
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_medico
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Medico)
+    <span class="hljs-keyword">REFERENCES</span> Medico(ID_Medico);
+
+<span class="hljs-keyword">ALTER TABLE</span> Consulta
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_especialidade
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Especialidade)
+    <span class="hljs-keyword">REFERENCES</span> Especialidade(ID_Especialidade);
+
+<span class="hljs-keyword">ALTER TABLE</span> Consulta
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_sala
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Sala)
+    <span class="hljs-keyword">REFERENCES</span> Sala(ID_Sala);
+
+<span class="hljs-keyword">ALTER TABLE</span> Consulta
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_paciente_convenio
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Paciente_Convenio)
+    <span class="hljs-keyword">REFERENCES</span> Paciente_Convenio(ID_Paciente_Convenio);
+
+<span class="hljs-comment">-- 7. Consulta_Procedimento</span>
+<span class="hljs-keyword">ALTER TABLE</span> Consulta_Procedimento
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_procedimento_consulta
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Consulta)
+    <span class="hljs-keyword">REFERENCES</span> Consulta(ID_Consulta)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-keyword">ALTER TABLE</span> Consulta_Procedimento
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_consulta_procedimento_procedimento
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Procedimento)
+    <span class="hljs-keyword">REFERENCES</span> Procedimento(ID_Procedimento);
+
+<span class="hljs-comment">-- 8. Prescricao</span>
+<span class="hljs-keyword">ALTER TABLE</span> Prescricao
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_prescricao_consulta
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Consulta)
+    <span class="hljs-keyword">REFERENCES</span> Consulta(ID_Consulta)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> CASCADE;
+
+<span class="hljs-keyword">ALTER TABLE</span> Prescricao
+    <span class="hljs-keyword">ADD CONSTRAINT</span> fk_prescricao_medicamento
+    <span class="hljs-keyword">FOREIGN KEY</span> (ID_Medicamento)
+    <span class="hljs-keyword">REFERENCES</span> Medicamento(ID_Medicamento);
+</div></code></pre>
+<hr>
+<h3 id="4-inserção-de-dados-inserts-de-teste">4. Inserção de Dados (Inserts de Teste)</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">-- 1. Domínios e Entidades Independentes</span>
+<span class="hljs-keyword">INSERT INTO</span> Especialidade (ID_Especialidade, Nome_Especialidade, Conselho) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Cardiologia&#x27;</span>, <span class="hljs-string">&#x27;CRM&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Ortopedia&#x27;</span>, <span class="hljs-string">&#x27;CRM&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Pediatria&#x27;</span>, <span class="hljs-string">&#x27;CRM&#x27;</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Dermatologia&#x27;</span>, <span class="hljs-string">&#x27;CRM&#x27;</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Convenio (ID_Convenio, CNPJ, Nome_Operadora, Tipo_Plano) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;12345678000199&#x27;</span>, <span class="hljs-string">&#x27;Unimed&#x27;</span>, <span class="hljs-string">&#x27;Nacional Enfermaria&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;98765432000188&#x27;</span>, <span class="hljs-string">&#x27;Bradesco Saúde&#x27;</span>, <span class="hljs-string">&#x27;Top Nacional Quarto&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;45612378000155&#x27;</span>, <span class="hljs-string">&#x27;SulAmérica&#x27;</span>, <span class="hljs-string">&#x27;Exato Nacional&#x27;</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Procedimento (ID_Procedimento, Codigo_TUSS, Nome_Procedimento, Valor_Base) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;10101012&#x27;</span>, <span class="hljs-string">&#x27;Consulta em consultório&#x27;</span>, <span class="hljs-number">150.00</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;20102018&#x27;</span>, <span class="hljs-string">&#x27;Eletrocardiograma&#x27;</span>, <span class="hljs-number">80.50</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;30101018&#x27;</span>, <span class="hljs-string">&#x27;Raio-X de Tórax&#x27;</span>, <span class="hljs-number">120.00</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;40101010&#x27;</span>, <span class="hljs-string">&#x27;Exame de Sangue Básico&#x27;</span>, <span class="hljs-number">50.00</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Sala (ID_Sala, Numero_Sala) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">102</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">103</span>), (<span class="hljs-number">4</span>, <span class="hljs-number">201</span>), (<span class="hljs-number">5</span>, <span class="hljs-number">202</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Medicamento (ID_Medicamento, Nome_Medicamento) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Dipirona 500mg&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Ibuprofeno 400mg&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Amoxicilina 500mg&#x27;</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Losartana 50mg&#x27;</span>);
+
+<span class="hljs-comment">-- 2. Entidades Pessoais (Paciente e Médico)</span>
+<span class="hljs-keyword">INSERT INTO</span> Paciente (ID_Paciente, CPF, Nome_Completo, Data_Nascimento) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;11122233344&#x27;</span>, <span class="hljs-string">&#x27;João da Silva&#x27;</span>, <span class="hljs-string">&#x27;1985-05-15&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;55566677788&#x27;</span>, <span class="hljs-string">&#x27;Maria Oliveira&#x27;</span>, <span class="hljs-string">&#x27;1992-10-20&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;99988877766&#x27;</span>, <span class="hljs-string">&#x27;Carlos Souza&#x27;</span>, <span class="hljs-string">&#x27;1978-03-10&#x27;</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Paciente_Telefone (ID_Paciente, Numero) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;(11) 98765-4321&#x27;</span>),
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;(11) 3214-5678&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;(21) 99999-8888&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;(31) 97777-6666&#x27;</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Paciente_Alergia (ID_Paciente, Descricao) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Alergia a Penicilina&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Intolerância à Lactose&#x27;</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Medico (ID_Medico, CRM, UF_CRM, Nome_Medico) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;12345&#x27;</span>, <span class="hljs-string">&#x27;SP&#x27;</span>, <span class="hljs-string">&#x27;Dr. Roberto Costa&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;54321&#x27;</span>, <span class="hljs-string">&#x27;RJ&#x27;</span>, <span class="hljs-string">&#x27;Dra. Ana Paula&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;98765&#x27;</span>, <span class="hljs-string">&#x27;MG&#x27;</span>, <span class="hljs-string">&#x27;Dr. Marcos Lima&#x27;</span>);
+
+<span class="hljs-comment">-- 3. Relacionamentos e Entidades de Vínculo</span>
+<span class="hljs-keyword">INSERT INTO</span> Paciente_Convenio (ID_Paciente, ID_Convenio, Numero_Carteirinha, Data_Validade) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;UNI123456789&#x27;</span>, <span class="hljs-string">&#x27;2027-12-31&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;BRA987654321&#x27;</span>, <span class="hljs-string">&#x27;2026-06-30&#x27;</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Medico_Especialidade (ID_Medico, ID_Especialidade) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>),
+(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Equipamento (ID_Equipamento, ID_Sala, Numero_Serie, Nome_Equipamento, Data_Manutencao) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;EQP-001&#x27;</span>, <span class="hljs-string">&#x27;Máquina de ECG&#x27;</span>, <span class="hljs-string">&#x27;2026-08-15&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;EQP-002&#x27;</span>, <span class="hljs-string">&#x27;Aparelho de Raio-X&#x27;</span>, <span class="hljs-string">&#x27;2026-07-10&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;EQP-003&#x27;</span>, <span class="hljs-string">&#x27;Balança Pediátrica&#x27;</span>, <span class="hljs-string">&#x27;2026-09-01&#x27;</span>);
+
+<span class="hljs-comment">-- 4. O Evento Central: A Consulta</span>
+<span class="hljs-keyword">INSERT INTO</span> Consulta (ID_Consulta, ID_Paciente, ID_Medico, ID_Especialidade, ID_Sala, ID_Paciente_Convenio, Data_Hora_Inicio, Duracao_Minutos, Status) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;2026-09-25 09:00:00&#x27;</span>, <span class="hljs-number">30</span>, <span class="hljs-string">&#x27;Agendada&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;2026-09-25 10:30:00&#x27;</span>, <span class="hljs-number">45</span>, <span class="hljs-string">&#x27;Realizada&#x27;</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-string">&#x27;2026-09-26 14:00:00&#x27;</span>, <span class="hljs-number">20</span>, <span class="hljs-string">&#x27;Agendada&#x27;</span>);
+
+<span class="hljs-comment">-- 5. Pós-Consulta (Receitas e Atos Médicos)</span>
+<span class="hljs-keyword">INSERT INTO</span> Consulta_Procedimento (ID_Consulta, ID_Procedimento) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+
+<span class="hljs-keyword">INSERT INTO</span> Prescricao (ID_Consulta, ID_Medicamento, Dosagem, Instrucoes_Uso) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-string">&#x27;1 comprimido&#x27;</span>, <span class="hljs-string">&#x27;Tomar pela manhã todos os dias&#x27;</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;40 gotas&#x27;</span>, <span class="hljs-string">&#x27;Tomar de 8 em 8 horas em caso de dor&#x27;</span>);
+</div></code></pre>
+
+</body>
+</html>

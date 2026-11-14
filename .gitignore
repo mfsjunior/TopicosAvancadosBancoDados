@@ -1,0 +1,31 @@
+# =====================================================================
+# REGRAS DE EXCLUSÃO - TopicosAvancadosBD
+# =====================================================================
+
+# 1. Material do Professor / Soluções (Exclusão solicitada)
+**/teacher/
+teacher/
+advanced-database-lab/teacher/
+
+# 2. Avaliações e Provas (Manter privado/oculto dos alunos)
+provas/
+**/provas/
+
+# 3. Credenciais e Tokens Sensíveis
+ngrok.yml
+*.env
+.env
+.env.*
+
+# 4. Dependências e Builds
+**/.git_backup/
+**/node_modules/
+**/dist/
+**/dist-arquivo-unico/
+*.log
+.DS_Store
+.vscode/
+
+# 5. Volumes de Bancos de Dados Locais
+**/data/
+data/
