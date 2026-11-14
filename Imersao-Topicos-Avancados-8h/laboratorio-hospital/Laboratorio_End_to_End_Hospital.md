@@ -489,6 +489,6 @@ O arquivo compactado deve conter **apenas os 3 itens a seguir**:
 
 ## 🚀 Próximo Passo: A Evolução da Arquitetura (Fase 2)
 
-Para conferir o gabarito oficial com a resolução técnica dos Desafios 1, 2 e 3, e avançar para o **particionamento declarativo por ano/mês**, **campos híbridos JSONB** e **arquitetura distribuída (Polyglot Persistence)**, consulte a continuação oficial deste laboratório:
+Para conferir a evolução de engenharia em cenários de alta escala com **particionamento declarativo por ano/mês**, **campos híbridos JSONB** e **arquitetura distribuída (Polyglot Persistence)**, consulte o documento complementar deste estudo de caso:
 
 👉 **[Evolucao_Laboratorio_Hospital_Fase2.md](Evolucao_Laboratorio_Hospital_Fase2.md)**
