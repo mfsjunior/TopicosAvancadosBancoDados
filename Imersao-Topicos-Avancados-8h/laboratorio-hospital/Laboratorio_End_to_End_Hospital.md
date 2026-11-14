@@ -220,7 +220,7 @@ Até aqui você aprendeu que o modelo relacional é fantástico para consistênc
 * **O Custo no Relacional:** Cada carregamento de tela exige cruzar 8 tabelas com `INNER JOIN` e `LEFT JOIN`. O disco do servidor opera em rotação alta buscando blocos espalhados.
 
 > [!TIP]
-> **Leitura Fundamental Prévia:** Antes de continuar, estude o [`Guia_Choque_de_Realidade_Quebrando_Vicio_SQL.md`](Guia_Choque_de_Realidade_Quebrando_Vicio_SQL.md). Ele contém 7 diagramas visuais demonstrando a desconstrução dos dogmas de 1970, a dor da escala horizontal, o descompasso de impedância e por que duplicar dados no NoSQL não é pecado, mas sim um requisito de auditoria (*Snapshot Pattern*).
+> **Leitura Fundamental Prévia:** Antes de continuar, estude o [`Quebrando_Vicio_SQL.md`](Quebrando_Vicio_SQL.md). Ele contém 7 diagramas visuais demonstrando a desconstrução dos dogmas de 1970, a dor da escala horizontal, o descompasso de impedância e por que duplicar dados no NoSQL não é pecado, mas sim um requisito de auditoria (*Snapshot Pattern*).
 
 > [!WARNING]
 > **Cuidado com o vício relacional!**
@@ -446,3 +446,11 @@ Para comprovar o domínio prático dos dois paradigmas, você deve resolver os s
    * As queries SQL e comandos Mongo desenvolvidos para os Desafios 1 e 2 com prints do resultado.
    * A justificativa técnica fundamentada para o Desafio 3.
    * Sua conclusão comparando quando uma HealthTech deve adotar PostgreSQL, MongoDB ou uma arquitetura híbrida (*Polyglot Persistence*).
+
+---
+
+## 🚀 Próximo Passo: A Evolução da Arquitetura (Fase 2)
+
+Para conferir o gabarito oficial com a resolução técnica dos Desafios 1, 2 e 3, e avançar para o **particionamento declarativo por ano/mês**, **campos híbridos JSONB** e **arquitetura distribuída (Polyglot Persistence)**, consulte a continuação oficial deste laboratório:
+
+👉 **[Evolucao_Laboratorio_Hospital_Fase2.md](Evolucao_Laboratorio_Hospital_Fase2.md)**

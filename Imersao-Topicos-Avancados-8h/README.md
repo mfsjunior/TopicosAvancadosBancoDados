@@ -13,8 +13,9 @@ Este diretório contém a síntese completa do conteúdo avançado de Banco de D
 | **[`Aula02_NoSQL_MongoDB_Arquitetura_Distribuida.md`](Aula02_NoSQL_MongoDB_Arquitetura_Distribuida.md)** | Guia didático da **Aula 2 (4h)**: Paradigma NoSQL, Modelagem em Documentos (Embed vs Reference), Aggregation Framework, Sharding/Replicação, Teorema CAP e Segurança/LGPD. |
 | **[`laboratorio-hospital/`](laboratorio-hospital/)** | Laboratório unificado completo a partir de dados hospitalares reais. |
 | ├── **[`dados_hospital.csv`](laboratorio-hospital/dados_hospital.csv)** | Planilha CSV desestruturada gerada pela recepção do hospital (Arquivo de entrada). |
-| ├── **[`Laboratorio_End_to_End_Hospital.md`](laboratorio-hospital/Laboratorio_End_to_End_Hospital.md)** | Roteiro prático com desafios, diagramas conceituais e comparações arquiteturais. |
-| ├── **[`Guia_Choque_de_Realidade_Quebrando_Vicio_SQL.md`](laboratorio-hospital/Guia_Choque_de_Realidade_Quebrando_Vicio_SQL.md)** | Guia didático fundamental: Como quebrar dogmas de 1970, descompasso de impedância e pensar em documentos. |
+| ├── **[`Laboratorio_End_to_End_Hospital.md`](laboratorio-hospital/Laboratorio_End_to_End_Hospital.md)** | Roteiro prático com desafios, diagramas conceituais e comparações arquiteturais (Fase 1). |
+| ├── **[`Evolucao_Laboratorio_Hospital_Fase2.md`](laboratorio-hospital/Evolucao_Laboratorio_Hospital_Fase2.md)** | **Evolução Avançada (Fase 2):** Resolução dos desafios, Particionamento por Data, JSONB híbrido, MinIO/S3 e Polyglot Persistence. |
+| ├── **[`Quebrando_Vicio_SQL.md`](laboratorio-hospital/Quebrando_Vicio_SQL.md)** | Guia didático fundamental: Como quebrar dogmas de 1970, descompasso de impedância e pensar em documentos. |
 | ├── **[`01_schema_relacional_postgres.sql`](laboratorio-hospital/01_schema_relacional_postgres.sql)** | Script SQL executável (DDL normalizado 3FN, carga, índices seletivos, simulação de lock/concorrência). |
 | └── **[`02_schema_nosql_mongodb.js`](laboratorio-hospital/02_schema_nosql_mongodb.js)** | Script MongoDB (`mongosh`/DBeaver) com documentos ricos, operadores de array e pipelines de agregação. |
 | **[`Tutorial_Subir_Bases_Containers.md`](Tutorial_Subir_Bases_Containers.md)** | **Guia Passo a Passo:** Como subir os containers Docker (PostgreSQL 15+ e MongoDB 6+), conectar e injetar as bases hospitalares via CLI ou DBeaver. |
