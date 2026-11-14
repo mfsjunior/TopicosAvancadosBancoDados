@@ -9,6 +9,20 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 📦 O QUE VOCÊ DEVE ENTREGAR AO PROFESSOR (FORMATO OBRIGATÓRIO)
+> 
+> Ao concluir as etapas deste laboratório, você deverá enviar **um arquivo compactado `.ZIP`** com o nome no padrão `Nome_Sobrenome_LabHospital.zip`, contendo **exatamente**:
+> 
+> 1. **`script_solucao_postgres.sql`**: O script SQL que você executou/adaptou no PostgreSQL contendo o DDL, os índices e a consulta do Desafio 1.
+> 2. **`script_solucao_mongodb.js`**: O script JavaScript que você executou no MongoDB contendo a criação da coleção e o pipeline de agregação do Desafio 2.
+> 3. **`Relatorio_Pratico_Hospital.pdf` (OBRIGATÓRIO EM PDF - 2 a 3 páginas):**
+>    * **Página 1:** Identificação do aluno (Nome, Matrícula, Turma) + Diagnóstico das violações de 1FN, 2FN e 3FN encontradas na planilha CSV original.
+>    * **Página 2 (Desafio 1 - PostgreSQL):** Print da tela do DBeaver/Terminal executando a query do médico com mais procedimentos com o **`EXPLAIN ANALYZE`** legível + parágrafo explicando se o otimizador usou *Hash Join* ou *Nested Loop*.
+>    * **Página 3 (Desafios 2 e 3 - MongoDB):** Print da tela executando o pipeline analítico (`$unwind` + `$group`) para o remédio mais prescrito em alérgicos a Penicilina + **texto de 1 parágrafo** respondendo a decisão técnica de onde salvar os arquivos de imagem médica de 50MB (S3/MinIO vs MongoDB).
+
+---
+
 ## 🎯 Sua Missão neste Laboratório
 
 Você foi contratado(a) como Arquiteto(a) de Dados pelo **Hospital Geral Santa Helena**. Hoje, a recepção e o faturamento do hospital operam sobre uma planilha CSV desestruturada, repleta de duplicidades, erros de digitação e travamentos.
@@ -441,11 +455,35 @@ Para comprovar o domínio prático dos dois paradigmas, você deve resolver os s
 
 ---
 
-### 📦 Instruções de Entrega:
-1. Monte um documento contendo:
-   * As queries SQL e comandos Mongo desenvolvidos para os Desafios 1 e 2 com prints do resultado.
-   * A justificativa técnica fundamentada para o Desafio 3.
-   * Sua conclusão comparando quando uma HealthTech deve adotar PostgreSQL, MongoDB ou uma arquitetura híbrida (*Polyglot Persistence*).
+## 📦 Instruções Detalhadas de Entrega
+
+O estudante deverá enviar na plataforma acadêmica (ou por e-mail, conforme orientação do professor) **um arquivo ZIP único** nomeado como:
+`[SEU_NOME]_[SEU_SOBRENOME]_Lab_Hospital.zip`
+
+O arquivo compactado deve conter **apenas os 3 itens a seguir**:
+
+```text
+📦 Seu_Nome_Sobrenome_Lab_Hospital.zip
+ ├── 📄 script_postgres.sql         (Script SQL que você executou no PostgreSQL)
+ ├── 📄 script_mongodb.js           (Script JavaScript que você executou no MongoDB)
+ └── 📑 Relatorio_Hospital.pdf      (Relatório curto de 2 a 3 páginas - OBRIGATÓRIO EM PDF)
+```
+
+---
+
+### 📑 Estrutura Obrigatória do Relatório em PDF (2 a 3 Páginas):
+
+| Página | Seção Obrigatória | Conteúdo Exigido |
+| :---: | :--- | :--- |
+| **Página 1** | **Identificação & Diagnóstico da Planilha** | • Nome Completo, Matrícula e Turma.<br/>• Breve tabela ou tópicos listando as 3 principais violações de normalização (1FN, 2FN, 3FN) identificadas na planilha [`dados_hospital.csv`](dados_hospital.csv). |
+| **Página 2** | **Desafio 1: Diagnóstico com EXPLAIN ANALYZE (PostgreSQL)** | • **Print nítido da tela do DBeaver/Terminal** executando a query com o `EXPLAIN ANALYZE`.<br/>• **Texto explicativo (1 parágrafo):** Qual médico realizou mais procedimentos e qual nó de junção (`Hash Join` ou `Nested Loop`) o banco utilizou, justificando o porquê. |
+| **Página 3** | **Desafios 2 e 3: MongoDB & Decisão de Arquitetura** | • **Print da tela** executando o pipeline de agregação no MongoDB com o resultado legível (remédio mais prescrito em alérgicos a Penicilina).<br/>• **Parecer Técnico (1 parágrafo):** Resposta fundamentada ao Desafio 3 sobre onde armazenar arquivos de imagens médicas de 50MB (explicando o teto de 16MB do BSON no MongoDB vs armazenamento de objetos em S3/MinIO). |
+
+> [!CAUTION]
+> **Atenção aos Critérios de Correção do Professor:**
+> * Relatórios entregues em Word (`.docx`), imagens soltas ou fora do formato **PDF** sofrerão desconto de nota.
+> * Os prints devem estar legíveis, mostrando a consulta executada e o resultado retornado pelo SGBD.
+> * Utilize o modelo pronto disponível em: [`TEMPLATE_RELATORIO_ALUNO.md`](TEMPLATE_RELATORIO_ALUNO.md) para redigir seu trabalho e exportar diretamente para PDF.
 
 ---
 
